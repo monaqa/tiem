@@ -12,7 +12,7 @@ struct Opts {
 
 #[derive(Debug, Clone, StructOpt)]
 enum SubCmd {
-    Start,
+    Start { content: String },
     Stop,
     Status,
 }
@@ -27,8 +27,8 @@ fn main() -> Result<()> {
     let tiem = Tiem::load(&status, &log)?;
 
     match opts.subcmd {
-        SubCmd::Start => {
-            tiem.start()?;
+        SubCmd::Start { content } => {
+            tiem.start(&content)?;
         }
         SubCmd::Stop => {
             todo!()
